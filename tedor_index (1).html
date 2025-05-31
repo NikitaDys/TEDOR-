@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TEDOR — Интернет-магазин</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .product h2 {
+      margin-top: 0;
+    }
+    .btn {
+      background-color: orange;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn:hover {
+      background-color: darkorange;
+    }
+    .cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .cart h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>TEDOR — Интернет-магазин</header>
+
+  <div class="container">
+    <div class="product">
+      <h2>Сумка шоппер</h2>
+      <p>Универсальная и модная сумка для покупок и повседневного использования.</p>
+      <p><strong>Цена:</strong> 990 ₽</p>
+      <button class="btn" onclick="addToCart('Сумка шоппер', 990)">Добавить в корзину</button>
+    </div>
+  </div>
+
+  <div class="cart" id="cart">
+    <h3>Корзина</h3>
+    <ul id="cart-items"></ul>
+    <p><strong>Итого: <span id="total">0</span> ₽</strong></p>
+    <button class="btn" onclick="checkout()">Оплатить онлайн</button>
+  </div>
+
+  <script>
+    const cartItems = [];
+
+    function addToCart(name, price) {
+      cartItems.push({ name, price });
+      renderCart();
+    }
+
+    function renderCart() {
+      const list = document.getElementById('cart-items');
+      list.innerHTML = '';
+      let total = 0;
+      cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} — ${item.price} ₽`;
+        list.appendChild(li);
+        total += item.price;
+      });
+      document.getElementById('total').textContent = total;
+    }
+
+    function checkout() {
+      alert('Оплата будет реализована через онлайн-платформу (например, ЮKassa или Tinkoff).');
+    }
+  </script>
+</body>
+</html>
